@@ -13,7 +13,9 @@ class MainChirps extends Component {
 
     async componentDidMount() {
         try {
-            let response = await fetch('/api/chirps');
+            let response = await fetch('/api/chirps',  {
+                method: 'GET'
+              });
             let data = await response.json();
             this.setState({ chirps: data })
         } catch (e) {
