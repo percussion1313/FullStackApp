@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Chirp from './staticchirp'
+import Cardlist from './staticchirp'
 import { render } from 'react-dom';
+
 
 
 class ChirpList extends Component {
@@ -25,13 +26,13 @@ class ChirpList extends Component {
         } catch (e) {
             console.log('Iz broken');
         }
-
-        
     }
+
+
     render() {
         return (
             <React.Fragment>
-                <div></div>
+                <Cardlist items={this.state.chirps}/>
             </React.Fragment>
         )
     }

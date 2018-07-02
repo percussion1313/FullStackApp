@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import MainChirps from './mainchirps';
-import GoodbyeWorld from './goodbye';
+import ChirpList from './chirplist';
+import EditChirp from './editchirp';
+import SingleChirp from './singlechirp'
 
 class Navigation extends Component {
 
@@ -9,10 +10,10 @@ class Navigation extends Component {
         return (
             <Router>
                 <Fragment>
-                    <Link to="/goodbye">Goodbye</Link>
                     <Switch>
-                        <Route exact path="/" component={MainChirps} />
-                        <Route path="/goodbye" component={GoodbyeWorld} />
+                        <Route exact path="/" component={ChirpList} />
+                        <Route path="/chirp/:id/edit" component={EditChirp} />
+                        <Route path="/chirp/:id/" component={SingleChirp} />
                     </Switch>
                 </Fragment>
             </Router>

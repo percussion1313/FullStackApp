@@ -1,24 +1,37 @@
 import { Router } from 'express';
+const express = require('express');
+const chirpStore = require('../chirpstore')
 
-let chirps = [
-    {
-        user: "chrundlethegreat",
-        text: "Yes, my good man, I'll have the milk steak, boiled over hard, and your finest jelly beans...raw.",
-    },
-    {
-        user: 'anustart12',
-        text: ' Michael, you are quite the cupid. You can stick an arrow in my buttocks any time.',
-    },
-    {
-        user: 'titussss',
-        text: "Pinot Noir Caviar, Myanmar Mid-sized car You don't have to be popu-lar Find out who your true friends are",
+let router = express.Router();
+
+router.get('/:id?', (req, res) => {
+    let id = req.params.id
+    if (id) {
+        res.json(chirpStore.GetChirp(id));
+    } else {
+        res.send(chirpStore.GetChirps());
     }
-  ];
-
-let router = Router();
-
-router.get('/', (req, res) => {
-    res.json(chirps);
 });
+
+router.post('/', (req, res) => {
+    chirpStore.CreateChirp(req.body);
+    res.sendStatus(200);
+})
+
+router.put('/:id', (req, res) => {
+   let id = req.params.id
+   chirpStore.UpdateChirp(id, req.body)
+    res.sendStatus(200); 
+});
+
+router.delete('/:id', (req, res) => {
+    let id = req.params.id 
+    res.json(chirpStore.DeleteChirp(id,req.body));
+})
+
+module.exports = router;
+
+
+
 
 export default router;

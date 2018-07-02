@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-class GoodbyeWorld extends Component {
+class EditChirp extends Component {
     
     constructor(props) {
         super(props);
@@ -12,4 +12,4 @@ class GoodbyeWorld extends Component {
     }
 }
 
-export default GoodbyeWorld;
+export default EditChirp;

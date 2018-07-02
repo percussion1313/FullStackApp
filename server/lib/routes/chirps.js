@@ -1,26 +1,41 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _express = require("express");
+var _express = require('express');
 
-var chirps = [{
-    user: "chrundlethegreat",
-    text: "Yes, my good man, I'll have the milk steak, boiled over hard, and your finest jelly beans...raw."
-}, {
-    user: 'anustart12',
-    text: ' Michael, you are quite the cupid. You can stick an arrow in my buttocks any time.'
-}, {
-    user: 'titussss',
-    text: "Pinot Noir Caviar, Myanmar Mid-sized car You don't have to be popu-lar Find out who your true friends are"
-}];
+var express = require('express');
+var chirpStore = require('../chirpstore');
 
-var router = (0, _express.Router)();
+var router = express.Router();
 
-router.get('/', function (req, res) {
-    res.json(chirps);
+router.get('/:id?', function (req, res) {
+    var id = req.params.id;
+    if (id) {
+        res.json(chirpStore.GetChirp(id));
+    } else {
+        res.send(chirpStore.GetChirps());
+    }
 });
+
+router.post('/', function (req, res) {
+    chirpStore.CreateChirp(req.body);
+    res.sendStatus(200);
+});
+
+router.put('/:id', function (req, res) {
+    var id = req.params.id;
+    chirpStore.UpdateChirp(id, req.body);
+    res.sendStatus(200);
+});
+
+router.delete('/:id', function (req, res) {
+    var id = req.params.id;
+    res.json(chirpStore.DeleteChirp(id, req.body));
+});
+
+module.exports = router;
 
 exports.default = router;
