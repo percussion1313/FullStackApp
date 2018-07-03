@@ -1,42 +1,29 @@
 import React, { Component } from 'react';
-import Cardlist from './staticchirp'
-import { render } from 'react-dom';
 
 
 
 class ChirpList extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-
-            chirps: []
-        }
-    }
-
-    async componentDidMount() {
-        try {
-            let response = await fetch('/api/chirps',  {
-                method: 'GET',
-                
-              });
-            let data = await response.json();
-            console.log(data);
-            this.setState({ chirps: data })
-        } catch (e) {
-            console.log('Iz broken');
-        }
-    }
+  render() {
+    let chirpeys = this.props.items.map((key) => {
+      return (
+        <div className="card bg-light mb-3 m-0" key={key}>
+          <div className="card-header bg-primary text-white" >{this.props.items[key].user}</div>
+          <div className="card-body ">
+            <h5 className="card-title">{this.props.items[key].user}</h5>
+          </div>
+        </div>
+      )
+    });
+    return (
+      <React.Fragment>
+        {chirpeys}
+      </React.Fragment>
+    )
+  }
+};
 
 
-    render() {
-        return (
-            <React.Fragment>
-                <Cardlist items={this.state.chirps}/>
-            </React.Fragment>
-        )
-    }
-}
+
+
 export default ChirpList;
-
-

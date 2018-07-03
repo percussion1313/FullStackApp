@@ -7,5 +7,4 @@ let router = Router();
 router.use('/chirps', chirpsRouter);
 router.use('/users', usersRouter)
 
-
 export default router;
