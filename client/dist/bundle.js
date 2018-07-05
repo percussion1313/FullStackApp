@@ -33639,8 +33639,7 @@ var GetChirps = function (_Component) {
         key: 'componentDidMount',
         value: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                var response, _data;
-
+                var response, data;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
@@ -33658,10 +33657,10 @@ var GetChirps = function (_Component) {
                                 return response.json();
 
                             case 6:
-                                _data = _context.sent;
+                                data = _context.sent;
 
-                                console.log(_data);
-                                this.setState({ chirps: _data });
+                                console.log(data);
+                                this.setState({ chirps: data });
                                 _context.next = 14;
                                 break;
 
@@ -33691,7 +33690,7 @@ var GetChirps = function (_Component) {
             return _react2.default.createElement(
                 _react2.default.Fragment,
                 null,
-                _react2.default.createElement(_chirplist2.default, { data: data[key], key: key, id: key })
+                _react2.default.createElement(_chirplist2.default, { items: this.state.chirps })
             );
         }
     }]);
@@ -33766,7 +33765,7 @@ var Newcard = function Newcard(props) {
         _react2.default.createElement(
             "div",
             { className: "card-header bg-primary text-white" },
-            props.cardDetails.username
+            props.cardDetails.user
         ),
         _react2.default.createElement(
             "div",
@@ -33774,7 +33773,7 @@ var Newcard = function Newcard(props) {
             _react2.default.createElement(
                 "h5",
                 { className: "card-title" },
-                props.cardDetails.chirp
+                props.cardDetails.text
             )
         )
     );
