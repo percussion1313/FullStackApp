@@ -1,26 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Newcard from './Newcard';
 
 
+const ChirpList = (props) => {
+  
+  let cards = props.items.map((card, index) => {
+    return <Newcard key={index} cardDetails={card} />;
+  });
 
-class ChirpList extends Component {
-
-  render() {
-    let chirpeys = this.props.items.map((key) => {
-      return (
-        <div className="card bg-light mb-3 m-0" key={key}>
-          <div className="card-header bg-primary text-white" >{this.props.items[key].user}</div>
-          <div className="card-body ">
-            <h5 className="card-title">{this.props.items[key].user}</h5>
-          </div>
-        </div>
-      )
-    });
-    return (
-      <React.Fragment>
-        {chirpeys}
-      </React.Fragment>
-    )
-  }
+  return (
+      <div className="col-md-6 m-3 justify-content-center mx-auto">
+        <div className="row flex-md-row">{cards}</div>
+      </div>
+  );
 };
 
 

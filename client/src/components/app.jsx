@@ -11,7 +11,7 @@ class Navigation extends Component {
             <Router>
                 <Fragment>
                     <Switch>
-                        <Route exact path="/" component={GetChirps} />
+                        <Route  path="/" component={GetChirps} />
                         <Route path="/chirp/:id/edit" component={EditChirp} />
                         <Route path="/chirp/:id/" component={SingleChirp} />
                     </Switch>

@@ -12,6 +12,8 @@ class GetChirps extends Component {
 
             chirps: []
         }
+        
+        
     }
 
     async componentDidMount() {
@@ -27,6 +29,7 @@ class GetChirps extends Component {
             console.log('Iz broken');
         }
     }
+    
 
 
     render() {
