@@ -9,8 +9,8 @@ const ChirpList = (props) => {
   });
 
   return (
-      <div className="col-md-6 m-3 justify-content-center mx-auto">
-        <div className="row flex-md-row">{cards}</div>
+      <div className="row col-md-8 d-flex mx-auto">
+        <div className="col">{cards}</div>
       </div>
   );
 };
@@ -19,3 +19,4 @@ const ChirpList = (props) => {
 
 
 export default ChirpList;
+

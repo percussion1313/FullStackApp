@@ -1,11 +1,1 @@
-{
-    "nextid": 3,
-    "01": {
-        "user": "testing 123",
-        "text": "will this even work"
-    },
-    "02": {
-        "user": "testing 123",
-        "text": "howdy howdy howdy"
-    }
-}
+{"1":{"user":"testing 123","text":"will this even work"},"2":{"user":"testing 123","text":"howdy howdy howdy"},"3":{"user":"fff","text":"ffff"},"4":{"user":"fffsafdsdf","text":"ffffsdfdsf"},"nextid":5}

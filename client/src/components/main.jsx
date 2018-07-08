@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ChirpList from './chirplist'
+import ChirpList from './chirplist';
+import AddChirp from './addchirp';
 import { render } from 'react-dom';
 
 
@@ -12,16 +13,14 @@ class GetChirps extends Component {
 
             chirps: []
         }
-        
-        
     }
 
     async componentDidMount() {
         try {
-            let response = await fetch('/api/chirps',  {
+            let response = await fetch('/api/chirps', {
                 method: 'GET',
-                
-              });
+
+            });
             let data = await response.json();
             console.log(data);
             this.setState({ chirps: data })
@@ -29,15 +28,16 @@ class GetChirps extends Component {
             console.log('Iz broken');
         }
     }
-    
 
 
     render() {
         return (
             <React.Fragment>
-                <ChirpList items={this.state.chirps}/>
+                <AddChirp />
+                <ChirpList items={this.state.chirps} />
             </React.Fragment>
         )
     }
 }
 export default GetChirps;
+
