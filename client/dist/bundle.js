@@ -33761,7 +33761,7 @@ var Newcard = function Newcard(props) {
         { className: "card bg-light mb-3" },
         _react2.default.createElement(
             "div",
-            { className: "card-header bg-primary text-white" },
+            { className: "card-header bg-primary text-white", id: "user" },
             props.cardDetails.user
         ),
         _react2.default.createElement(
@@ -33769,7 +33769,7 @@ var Newcard = function Newcard(props) {
             { className: "card-body " },
             _react2.default.createElement(
                 "h5",
-                { className: "card-title" },
+                { className: "card-title", id: "text" },
                 props.cardDetails.text
             )
         )
@@ -33812,64 +33812,61 @@ var AddChirp = function (_Component) {
         var _this = _possibleConstructorReturn(this, (AddChirp.__proto__ || Object.getPrototypeOf(AddChirp)).call(this, props));
 
         _this.state = {
-            chirps: []
+            user: '',
+            text: ''
         };
-
-        _this.handleSubmit = function (event) {
-            event.preventDefault();
-            var data = {
-                user: _this.state.user,
-                text: _this.state.text
-            };
-            fetch('/api/chirps', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
-            console.log(data);
-            _this.setState({ chirps: data });
-        };
-
         return _this;
     }
 
     _createClass(AddChirp, [{
+        key: 'addChirp',
+        value: function addChirp() {
+            var url = '/api/chirps';
+            var data = {
+                user: this.state.user,
+                text: this.state.text
+            };
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (res) {
+                return res.json();
+            }).catch(function (error) {
+                return console.error('Error:', error);
+            });
+        }
+    }, {
         key: 'handleUserChange',
-        value: function handleUserChange(user) {
-            this.setState({ user: user });
+        value: function handleUserChange(e) {
+            this.setState({ user: e.target.value });
         }
     }, {
         key: 'handleTextChange',
-        value: function handleTextChange(text) {
-            this.setState({ text: text });
+        value: function handleTextChange(e) {
+            this.setState({ text: e.target.value });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
 
             return _react2.default.createElement(
                 _react2.default.Fragment,
                 null,
                 _react2.default.createElement(
                     'form',
-                    { onSubmit: this.handleSubmit },
+                    null,
                     _react2.default.createElement(
                         'div',
                         { className: 'col-md-6 mx-auto form-text text-muted rounded' },
                         _react2.default.createElement('input', { type: 'text', id: 'user', name: 'user', placeholder: 'user',
-                            onChange: function onChange(event) {
-                                return _this2.handleUserChange(event.target.value);
-                            } })
+                            onChange: this.handleUserChange.bind(this) })
                     ),
                     _react2.default.createElement('textarea', { className: 'form-control col-md-6 pagination-centered m-3 position-relative shadow mx-auto',
-                        placeholder: 'WRITE SOMETHING', name: 'text', id: 'text', type: 'text',
-                        onChange: function onChange(event) {
-                            return _this2.handleTextChange(event.target.value);
-                        } }),
+                        placeholder: 'WRITE SOMETHING', id: 'text', type: 'text',
+                        onChange: this.handleTextChange.bind(this) }),
                     _react2.default.createElement(
                         'div',
                         null,
@@ -33877,7 +33874,8 @@ var AddChirp = function (_Component) {
                             'button',
                             {
                                 className: 'btn btn-primary m-3 d-flex mx-auto shadow',
-                                name: 'cardSubmitButton'
+                                name: 'cardSubmitButton',
+                                onClick: this.addChirp.bind(this)
                             },
                             'Chirp!'
                         )

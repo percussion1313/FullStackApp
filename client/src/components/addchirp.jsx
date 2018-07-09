@@ -5,54 +5,52 @@ class AddChirp extends Component {
         super(props)
 
         this.state = {
-            chirps: []
+            user: '',
+            text: ''
         }
-
-        this.handleSubmit = (event) => {
-            event.preventDefault();
-            let data = { 
-                user: this.state.user,
-                text: this.state.text
-            }          
-            fetch('/api/chirps', {
-                method: 'POST', 
-                body: JSON.stringify(data),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                }
-            });
-            console.log(data);
-            this.setState({ chirps: data })
-        }
-
     }
 
-    handleUserChange(user) {
-        this.setState({ user });
+    addChirp() {
+        var url = '/api/chirps';
+        var data = {
+            user: this.state.user,
+            text: this.state.text,
+        };
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error));
     }
 
-    handleTextChange(text) {
-        this.setState({ text });
+    handleUserChange(e) {
+        this.setState({ user: e.target.value });
     }
 
+    handleTextChange(e) {
+        this.setState({ text: e.target.value });
+    }
 
     render() {
 
         return (
             <React.Fragment>
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <div className="col-md-6 mx-auto form-text text-muted rounded">
                         <input type="text" id="user" name="user" placeholder="user"
-                        onChange={(event) => this.handleUserChange(event.target.value)} />
+                            onChange={this.handleUserChange.bind(this)} />
                     </div>
-                    <textarea className="form-control col-md-6 pagination-centered m-3 position-relative shadow mx-auto" 
-                    placeholder="WRITE SOMETHING" name="text" id="text" type="text"
-                    onChange={(event) => this.handleTextChange(event.target.value)}></textarea>
+                    <textarea className="form-control col-md-6 pagination-centered m-3 position-relative shadow mx-auto"
+                        placeholder="WRITE SOMETHING" id="text" type="text"
+                        onChange={this.handleTextChange.bind(this)} ></textarea>
                     <div>
                         <button
                             className="btn btn-primary m-3 d-flex mx-auto shadow"
                             name="cardSubmitButton"
+                            onClick={this.addChirp.bind(this)}
                         >Chirp!</button>
                     </div>
                 </form>
@@ -64,6 +62,9 @@ class AddChirp extends Component {
 }
 
 export default AddChirp;
+
+
+
 
 
 
