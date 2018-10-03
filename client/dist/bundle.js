@@ -33771,6 +33771,11 @@ var Newcard = function Newcard(props) {
                 "h5",
                 { className: "card-title", id: "text" },
                 props.cardDetails.text
+            ),
+            _react2.default.createElement(
+                "button",
+                { className: "btn btn-primary float-right" },
+                "See Details"
             )
         )
     );
@@ -33817,6 +33822,9 @@ var AddChirp = function (_Component) {
         };
         return _this;
     }
+
+    //This took forever for some reason. 
+
 
     _createClass(AddChirp, [{
         key: 'addChirp',

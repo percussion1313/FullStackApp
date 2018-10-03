@@ -10,6 +10,7 @@ class AddChirp extends Component {
         }
     }
 
+    //This took forever for some reason. 
     addChirp() {
         var url = '/api/chirps';
         var data = {

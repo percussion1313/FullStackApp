@@ -7,6 +7,7 @@ const Newcard = (props) => {
             <div className="card-header bg-primary text-white" id="user">{props.cardDetails.user}</div>
             <div className="card-body ">
                 <h5 className="card-title" id="text">{props.cardDetails.text}</h5>
+                <button className="btn btn-primary float-right">See Details</button>
             </div>
         </div>
 
